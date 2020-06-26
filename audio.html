@@ -1,0 +1,48 @@
+<html>
+<head>
+    </head>
+    <body>
+    <audio controls id="adt">
+        <source src="%5BSongs.PK%5D%20Dharti%20-%2004%20-%20Warrant.mp3" type="audio/mpeg">
+        no element
+     </audio>
+     <video style="width: 400px; height: 250px;" controls id="vd">
+        <source src="Honey-Singh-Chaska-Official-video[www.savevid.com].mp4" type="video/mp4">
+     </video>
+        <button type="button" onclick="playAudio()">Audioplay</button>
+        <button type="button" onclick="pauseAudio()">Audiopause</button>
+        <button type="button" onclick="playVideo()">Videoplay</button>
+        <button type="button" onclick="pauseVideo()">Videopause</button>
+        <button type="button" onclick="pause()">God</button>
+    
+    <script>
+      var x=document.getElementById("adt");
+      var y=document.getElementById("vd");
+             
+        function playAudio(){
+            x.play();
+        }
+        function pauseAudio(){
+            x.pause();
+            y.play();
+        }
+        function playVideo(){
+            y.play();
+        }
+        function pauseVideo(){
+            y.pause();
+            x.play();
+        }
+        function pause(){
+            y.pause();
+            x.pause();
+        }
+       var r=function(a,b){
+           document.write(a+b);
+       }
+       r(1,2);
+    </script>
+
+ </body>
+
+</html>

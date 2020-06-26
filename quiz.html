@@ -1,0 +1,235 @@
+<html>
+ <head>
+    <style>
+        .left{
+            background-color: #47029A;
+            float: left;
+            width: 22vw;
+            text-align: center;
+            height: 100%;
+        
+        }
+
+        .right{
+            background-color: #212F3D;
+            float: right;
+            width: 75vw;
+            height: 100%;
+            margin-right: 7px;
+            color: lightgray;     
+
+        }     
+
+        .left button{
+            margin-top: 20px;
+            width: 180px;
+            height: 35px;
+            padding: 4px;
+            border: 2px solid white;
+            background-color: #D7FC42;
+            border-radius: 35px;      
+        }
+
+        h1{
+            font-family: sans-serif;
+            }
+        h2{
+            margin-left: 150px;
+            font-family: sans-serif;
+        }
+
+        .option button{
+            margin-left: 150px;
+            margin-top:15px;
+            height: 50px;
+            width: 300px;
+            padding: 4px;
+            border: 4px SOLID #7986CB;
+            border-radius: 25px;
+            background-color: #212F3D;
+            color: white;
+            font-size: 17px;
+        }
+        .option{
+            margin-top: 70px;
+        }
+
+        .left button:hover{
+            background-color: white;
+        }
+        .option button:hover{
+            background-color: black;
+        }
+        .next{
+            width: 100px;
+            height: 40px;
+            background-color: cornflowerblue;
+            margin-left: 250px;
+            margin-top: 50px;
+            border: 2px;
+            border-radius: 40px;
+            background-color: darkorange;
+            color: white;
+            font-size: 19px;
+
+        }
+    </style>
+    </head>
+    <body>
+          <div class="left">
+              <button type="button" class="q1">Question 1</button><br>
+              <button type="button" class="q2">Question 2</button><br>
+              <button type="button" class="q3">Question 3</button><br>
+          </div>
+          <div class="right">
+              <p id="timer"></p><br><br>
+               <h2 class="hh"></h2>
+              <div class="option">
+                  <button type="button" id="a"></button><br>
+                  <button type="button" id="b"></button><br>
+                  <button type="button" id="c"></button>
+              </div>
+               <button type="button" class="next">Next</button> 
+          </div> 
+        
+    </body>
+      <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+    <script> 
+    
+        
+        $(document).ready(function(){
+            
+           
+            
+            var answer;
+            var counter=0;
+            
+            var c=60;
+        var t;
+        timedCount();
+
+        function timedCount()
+		{
+
+        	var hours = parseInt( c / 3600 ) % 24;
+        	var minutes = parseInt( c / 60 ) % 60;
+        	var seconds = c % 60;
+
+        	var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+
+            
+        	$('#timer').html(result);
+            if(c == 0 )
+			{
+				window.location="logout.html";
+			}
+            c = c - 1;
+            t = setTimeout(function()
+			{
+			 timedCount()
+			},
+			1000);
+        }
+            
+            
+            var question=[
+            [ 'Entomology is the science that studies' ,  'Behaviour of human being'  ,  'Insects' ,  'Formation of rocks',"Insect"],
+
+            ["At which of the following sites, largest variety of food grains in the Chalcolithic age has been found?","Navdatoli","Gilund","Banahali","Navdatoli"],
+                
+            ["Which among the following countries is currently the biggest supplier of crude oil to India?","Iran","Saudi Arabia","UAE","Saudi Arabia"]
+
+            ]; 
+                 
+        $(".hh").text(question[0][0]);
+        $("#a").text(question[0][1]);
+        $("#b").text(question[0][2]);
+        $("#c").text(question[0][3]);
+        answer=question[counter][4];   
+            
+                 $("#a,#b,#c").click(function(){
+                        $("#b").css("background-color","green");
+                        $("#a,#c").css("background-color","red");
+                    });
+    
+                
+        
+       
+       counter++;
+            
+         
+            $(".next").click(function ques(){  
+                $("#a,#b,#c").css("background-color","#212F3D");
+                
+        $(".hh").text(question[counter][0]);
+        $("#a").text(question[counter][1]);
+        $("#b").text(question[counter][2]);
+        $("#c").text(question[counter][3]);
+         answer=question[counter][4];
+           
+            
+                 if(answer==question[counter][1]){
+                     $("#a,#b,#c").click(function(){
+                         $("#a").css("background-color","green");
+                         $("#b,#c").css("background-color","red");
+                     });
+                 }
+                
+                  if(answer==question[counter][2]){
+                     $("#a,#b,#c").click(function(){
+                         $("#b").css("background-color","green");
+                         $("#a,#c").css("background-color","red");
+                     });
+                 }
+                       
+                
+                if(answer==question[counter][3]){
+                     $("#a,#b,#c").click(function(){
+                         $("#c").css("background-color","green");
+                         $("#a,#b").css("background-color","red");
+                     });
+                 }
+                         
+           
+                
+                counter++;
+               
+            });
+           
+                                    
+        $(".q1").click(function(){
+             
+            $(".hh").text(question[0][0]);
+            $("#a").text(question[0][1]);
+            $("#b").text(question[0][2]);
+            $("#c").text(question[0][3]); 
+        });
+            
+        $(".q2").click(function(){
+         
+            $(".hh").text(question[1][0]);
+            $("#a").text(question[1][1]);
+            $("#b").text(question[1][2]);
+            $("#c").text(question[1][3]);
+            
+                counter++; 
+        });
+            
+          $(".q3").click(function(){
+             
+            $(".hh").text(question[2][0]);
+            $("#a").text(question[2][1]);
+            $("#b").text(question[2][2]);
+            $("#c").text(question[2][3]);
+              
+              counter++;
+               });
+                   
+          
+        });
+
+
+    </script>
+
+</html>
+

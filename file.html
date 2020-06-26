@@ -1,0 +1,30 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <input type="file" id="ff" accept="image/jpeg" >
+        <div id="image_preview">
+        <img src="" width="200px" height="250px" id="preview">
+        </div>
+    </body>
+    <script>
+        const impFile= document.getElementById("ff");
+        const previewContainer= document.getElementById("image_preview");
+        const previewImage=previewContainer.querySelector("preview");
+        
+          impFile.addEventListener("change",function()){
+              
+              const file=this.File[0];
+              if(file){
+                  
+                  const reader=new FileReader();
+              reader.addEventListener("load" , function(){
+                previewImage.setAttribute("src",this.result);                                      
+              });
+              reader.readAsDataURL(file);
+                
+          }
+          }
+        
+    </script>
+</html>

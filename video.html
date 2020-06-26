@@ -1,0 +1,72 @@
+<html>    
+<head>
+    </head>
+    <body>
+    <video style="width: 500px; height: 350px;" id="play" controls>
+        <source src="LeBron%20James%20%20%20Lord%20Knows%20Mix.mp4">
+        </video> 
+        <p>video is paused or skipped:</p>
+        <p id="count"></p>
+        <p>Total time for which video is watched:</p>
+        <p id="timer"></p>
+        <p>Skipped time:</p>
+        <span id="seek"></span>
+        <p>period skipped</p>
+        <p id="pp"></p>
+     </body>
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+    <script>
+        var i=1;
+        var counter=0;
+        var previousTimer=0;
+        var previousSeek=0;
+        var t1=0;
+    
+      
+        $("#play").on("play",function(){
+            
+          var timer=setInterval(function(){
+                   $("#timer").text(i);
+                   i++;  
+                    },1000); 
+        
+            
+                 var vid=document.getElementById("play"); 
+               vid.addEventListener("seeked" , function(){
+                   var time=i;
+                   var seek=vid.currentTime;
+                   var s=0;
+                   
+                   if(time!=previousTimer){
+                       
+                       t1=time-previousTimer;
+                     
+                   }
+               s=previousSeek+t1;
+                   
+                   $("#pp").text(s+" to "+seek);
+                       console.log(previousSeek);   
+                   previousTimer=time;
+                    previousSeek=seek;
+               });
+           
+         
+            
+            $("#play").on("pause",function(){
+                clearInterval(timer);
+          
+            });
+            
+                 
+        });
+                  
+         $("#play").on("pause",function(){
+             counter++;   
+             $("#count").text(counter);    
+             $("#count").text(counter);    
+         });  
+        
+        
+    </script>
+
+</html>
